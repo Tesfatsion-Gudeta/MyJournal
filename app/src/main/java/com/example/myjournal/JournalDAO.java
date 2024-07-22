@@ -15,7 +15,7 @@ public interface JournalDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void add(Journal journal);
 
-    @Query("SELECT * from journal ORDER BY id DESC")
+    @Query("SELECT * FROM journal")
     List<Journal> getAllNotes();
 
     @Query("UPDATE journal SET title = :title,note = :note WHERE id")
