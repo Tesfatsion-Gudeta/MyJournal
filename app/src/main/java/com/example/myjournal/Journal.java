@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class Journal implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     int id=0;
     @ColumnInfo(name = "title")
     String title;
@@ -18,8 +19,7 @@ public class Journal implements Serializable {
     String note;
     @ColumnInfo(name = "date")
     String date;
-    @ColumnInfo(name = "pinned")
-    boolean pinned=false;
+
 
     public String getNote() {
         return note;
@@ -51,14 +51,6 @@ public class Journal implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public boolean isPinned() {
-        return pinned;
-    }
-
-    public void setPinned(boolean pinned) {
-        this.pinned = pinned;
     }
 
 
