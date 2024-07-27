@@ -1,29 +1,31 @@
 package com.example.myjournal;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private JournalDB journalDB;
-    private RelativeLayout relativeLayout;
-    private RecyclerView recyclerView;
-    private ImageView addButton;
+    JournalDB journalDB;
+    RecyclerView recyclerView;
+    List<Journal> journalList;
+    RecyclerViewAdapter recyclerViewAdapter;
+    ImageView addButton;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,38 +37,46 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        RoomDatabase.Callback callback=new RoomDatabase.Callback() {
-            @Override
-            public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                super.onCreate(db);
-            }
 
-            @Override
-            public void onOpen(@NonNull SupportSQLiteDatabase db) {
-                super.onOpen(db);
-            }
-        };
-
-        journalDB= Room.databaseBuilder(getApplicationContext(),JournalDB.class,"journalDB").addCallback(callback).build();
-
-
-
+        journalDB=JournalDB.getJournalDB(this);
        recyclerView=findViewById(R.id.homeRecylerView);
        relativeLayout=findViewById(R.id.main);
        addButton=findViewById(R.id.imageButton);
-       addButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-              View view2=getLayoutInflater().inflate(R.layout.journals,relativeLayout,false);
-              relativeLayout.addView(view2);
-
-           }
-       });
-       RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(this);
-       ArrayList<JournalModel> journalModel=new ArrayList<>();
 
 
+       journalList =journalDB.getJournalDAO().getAllNotes() ;
+
+
+       recyclerViewAdapter=new RecyclerViewAdapter(this,journalList);
        recyclerView.setAdapter(recyclerViewAdapter);
        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(MainActivity.this,WritingActivity.class);
+                startActivityForResult(intent,101);
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==101){
+            if(resultCode==Activity.RESULT_OK){
+                Journal journalTobeAdded= (Journal) data.getSerializableExtra("journal");
+                journalDB.getJournalDAO().add(journalTobeAdded);
+                journalList.clear();
+                journalList.addAll(journalDB.getJournalDAO().getAllNotes());
+                recyclerViewAdapter.notifyDataSetChanged();
+
+
+            }
+        }
+
     }
 }

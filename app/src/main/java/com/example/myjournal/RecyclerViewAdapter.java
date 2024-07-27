@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,14 +11,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Context context;
-    ArrayList<JournalModel> journalModel=new ArrayList<>();
+    List<Journal> journalList=new ArrayList<>();
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter(Context context, List<Journal> journalList) {
         this.context = context;
+        this.journalList = journalList;
     }
 
     @NonNull
@@ -33,18 +35,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.textDate.setText(journalList.get(position).getDate());
+        holder.textDate.setSelected(true);
+
+        holder.textTitle.setText(journalList.get(position).getTitle());
+
+        List<Integer> colors=new ArrayList<>();
+        colors.add(R.color.color1);
+        colors.add(R.color.color2);
+        colors.add(R.color.color3);
+        colors.add(R.color.color4);
+        colors.add(R.color.color5);
+
+
+        Random color=new Random();
+        int randomColor=color.nextInt(colors.size());
+        holder.cardView.setCardBackgroundColor(holder.itemView.getResources().getColor(colors.get(randomColor)));
 
     }
 
     @Override
     public int getItemCount() {
-        return journalModel.size() ;
+        return journalList.size() ;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
-        private TextView textDate,textNote;
-        private EditText textTitle;
+        private TextView textDate,textNote,textTitle;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -52,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             cardView=itemView.findViewById(R.id.journalCardview);
             textDate=itemView.findViewById(R.id.dateText);
             textTitle=itemView.findViewById(R.id.journalTitle);
-            textNote=itemView.findViewById(R.id.jouranlText);
+            //textNote=itemView.findViewById(R.id.jouranlText);
         }
 
     }

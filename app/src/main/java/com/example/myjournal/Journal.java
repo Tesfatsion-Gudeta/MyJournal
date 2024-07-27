@@ -9,16 +9,16 @@ import java.io.Serializable;
 @Entity(tableName = "journal")
 public class Journal implements Serializable {
 
+
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
     int id=0;
     @ColumnInfo(name = "title")
-    String title;
+    String title=" ";
 
     @ColumnInfo(name = "note")
-    String note;
+    String note=" ";
     @ColumnInfo(name = "date")
-    String date;
+    String date=" ";
 
 
     public String getNote() {
