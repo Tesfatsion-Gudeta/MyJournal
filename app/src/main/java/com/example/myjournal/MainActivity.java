@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter recyclerViewAdapter;
     ImageView addButton;
     RelativeLayout relativeLayout;
+    CardView cardView2;
+    TextView title2,date2,note2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        cardView2=findViewById(R.id.journalCardview2);
+//        title2=findViewById(R.id.journalTitle2);
+//        date2=findViewById(R.id.dateText2);
+//        note2=findViewById(R.id.journalNote2);
+
+
+
     }
 
     @Override
@@ -76,7 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+            else if(resultCode==Activity.RESULT_CANCELED){
+
+            }
         }
+
+
 
     }
 }

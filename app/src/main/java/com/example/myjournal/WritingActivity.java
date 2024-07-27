@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,7 +21,8 @@ import java.util.Date;
 
 public class WritingActivity extends AppCompatActivity {
 
-    private EditText textTitle,textDate,textNote;
+    private EditText textTitle,textNote;
+    private TextView textDate;
     private ImageView saveButton,cancelButton;
     private Journal journal2;
 
@@ -46,6 +48,8 @@ public class WritingActivity extends AppCompatActivity {
         SimpleDateFormat format=new SimpleDateFormat("EE, d MM yyyy HH:mm a");
         Date date2=new Date();
 
+        textDate.setText("  Date: "+format.format(date2));
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,7 @@ public class WritingActivity extends AppCompatActivity {
                 journal2 = new Journal();
                 journal2.setTitle(title2);
                 journal2.setDate(format.format(date2));
+
                 journal2.setNote(note2);
 
                 Intent intent=new Intent();
@@ -77,6 +82,10 @@ public class WritingActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent();
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
+
 
             }
         });

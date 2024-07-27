@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,11 +47,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         colors.add(R.color.color3);
         colors.add(R.color.color4);
         colors.add(R.color.color5);
+        colors.add(R.color.color6);
+        colors.add(R.color.color7);
+        colors.add(R.color.color8);
+        colors.add(R.color.color9);
 
 
         Random color=new Random();
         int randomColor=color.nextInt(colors.size());
         holder.cardView.setCardBackgroundColor(holder.itemView.getResources().getColor(colors.get(randomColor)));
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                View view2= LayoutInflater.from(context).inflate(R.layout.journal_read_mode,null);
+//
+//                //View view = getLayoutInflater().inflate(R.layout.journal_read_mode, null);
+//                RecyclerView recyclerView=view.findViewById(R.id.homeRecylerView);
+//                try {
+//                    RelativeLayout relativeLayout=view.findViewById(R.id.main);
+//                    relativeLayout.addView(view2);
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
+
+
+            }
+        });
+
+        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                return false;
+            }
+        });
 
     }
 
@@ -60,8 +91,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private CardView cardView;
-        private TextView textDate,textNote,textTitle;
+        private CardView cardView,cardView2;
+        private TextView textDate,textTitle,title2,date2,note2;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -70,7 +101,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             cardView=itemView.findViewById(R.id.journalCardview);
             textDate=itemView.findViewById(R.id.dateText);
             textTitle=itemView.findViewById(R.id.journalTitle);
-            //textNote=itemView.findViewById(R.id.jouranlText);
+            cardView2=itemView.findViewById(R.id.journalCardview2);
+            title2=itemView.findViewById(R.id.journalTitle2);
+            date2=itemView.findViewById(R.id.dateText2);
+            note2=itemView.findViewById(R.id.journalNote2);
+
         }
 
     }

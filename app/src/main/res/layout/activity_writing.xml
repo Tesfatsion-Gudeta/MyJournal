@@ -45,12 +45,11 @@
         android:orientation="vertical"
         >
 
-        <EditText
+        <TextView
             android:id="@+id/editText_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Date"
-            android:inputType="datetime"
             android:layout_marginTop="25dp"/>
 
         <EditText
