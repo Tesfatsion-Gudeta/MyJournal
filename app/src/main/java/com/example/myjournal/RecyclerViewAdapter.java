@@ -19,11 +19,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context context;
     List<Journal> journalList=new ArrayList<>();
+    JournalClickListener listener;
 
-    public RecyclerViewAdapter(Context context, List<Journal> journalList) {
+    public RecyclerViewAdapter(Context context, List<Journal> journalList, JournalClickListener listener) {
         this.context = context;
         this.journalList = journalList;
+        this.listener = listener;
     }
+
+//    public RecyclerViewAdapter(Context context, List<Journal> journalList) {
+//        this.context = context;
+//        this.journalList = journalList;
+//    }
 
     @NonNull
     @Override
@@ -60,16 +67,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                View view2= LayoutInflater.from(context).inflate(R.layout.journal_read_mode,null);
-//
-//                //View view = getLayoutInflater().inflate(R.layout.journal_read_mode, null);
-//                RecyclerView recyclerView=view.findViewById(R.id.homeRecylerView);
-//                try {
-//                    RelativeLayout relativeLayout=view.findViewById(R.id.main);
-//                    relativeLayout.addView(view2);
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
+
+                listener.onClick(journalList.get(holder.getAdapterPosition()));
 
 
             }
@@ -79,7 +78,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public boolean onLongClick(View view) {
 
-                return false;
+                listener.onLongClick(journalList.get(holder.getAdapterPosition()),holder.cardView);
+
+                return true;
             }
         });
 

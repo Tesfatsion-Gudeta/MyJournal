@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
        journalList =journalDB.getJournalDAO().getAllNotes() ;
 
-
-       recyclerViewAdapter=new RecyclerViewAdapter(this,journalList);
+       recyclerView.setHasFixedSize(true);
+       recyclerViewAdapter=new RecyclerViewAdapter(this,journalList,journalClickListener);
        recyclerView.setAdapter(recyclerViewAdapter);
        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent=new Intent(MainActivity.this,WritingActivity.class);
-                startActivityForResult(intent,101);
+                startActivityForResult(intent, 101);
 
             }
         });
@@ -90,9 +90,23 @@ public class MainActivity extends AppCompatActivity {
             else if(resultCode==Activity.RESULT_CANCELED){
 
             }
-        }
+        }}
+
+        private final JournalClickListener journalClickListener=new JournalClickListener() {
+            @Override
+            public void onClick(Journal journals) {
+
+            }
+
+            @Override
+            public void onLongClick(Journal journals, CardView cardView) {
+
+            }
+        };
 
 
 
-    }
+
+
+
 }
