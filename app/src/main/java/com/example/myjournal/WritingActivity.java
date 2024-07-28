@@ -21,11 +21,11 @@ import java.util.Date;
 
 public class WritingActivity extends AppCompatActivity {
 
-    private EditText textTitle,textNote;
+    private EditText textTitle, textNote;
     private TextView textDate;
-    private ImageView saveButton,cancelButton;
+    private ImageView saveButton, cancelButton;
     private Journal journal2;
-    private boolean savedJournal=false;
+    private boolean savedJournal = false;
 
 
     @Override
@@ -39,55 +39,57 @@ public class WritingActivity extends AppCompatActivity {
             return insets;
         });
 
-        try {
-            journal2=new Journal();
-            journal2= (Journal) getIntent().getSerializableExtra("savedJournal");
-            assert journal2 != null;
-            textDate.setText(journal2.getDate());
-            textTitle.setText(journal2.getTitle());
-            textNote.setText(journal2.getNote());
-            savedJournal=true;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        textTitle = findViewById(R.id.editText_title);
+        textDate = findViewById(R.id.editText_date);
+        textNote = findViewById(R.id.editText_text);
+        saveButton = findViewById(R.id.imageButton5);
+        cancelButton = findViewById(R.id.imageButton3);
+
+        SimpleDateFormat format = new SimpleDateFormat("EE, d MM yyyy HH:mm a");
+        Date date2 = new Date();
+
+        textDate.setText("  Date: " + format.format(date2));
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("savedJournal")) {
+            journal2 = (Journal) intent.getSerializableExtra("savedJournal");
+            if (journal2 != null) {
+                textDate.setText(journal2.getDate());
+                textTitle.setText(journal2.getTitle());
+                textNote.setText(journal2.getNote());
+                savedJournal = true;
+            } else {
+                journal2 = new Journal();
+            }
+        } else {
+            journal2 = new Journal();
         }
 
-
-        textTitle=findViewById(R.id.editText_title);
-        textDate=findViewById(R.id.editText_date);
-        textNote=findViewById(R.id.editText_text);
-        saveButton=findViewById(R.id.imageButton5);
-        cancelButton=findViewById(R.id.imageButton3);
-
-        SimpleDateFormat format=new SimpleDateFormat("EE, d MM yyyy HH:mm a");
-        Date date2=new Date();
-
-        textDate.setText("  Date: "+format.format(date2));
 
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String title2=textTitle.getText().toString();
-                String note2=textNote.getText().toString();
+                String title2 = textTitle.getText().toString();
+                String note2 = textNote.getText().toString();
 
 
                 if (note2.isEmpty()) {
                     Toast.makeText(WritingActivity.this, "you haven't written your journal", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(savedJournal){
-                journal2 = new Journal();}
+                if (!savedJournal) {
+                    journal2 = new Journal();
+                }
                 journal2.setTitle(title2);
                 journal2.setDate(format.format(date2));
 
                 journal2.setNote(note2);
 
-                Intent intent=new Intent();
-                intent.putExtra("journal",journal2);
-                setResult(Activity.RESULT_OK,intent);
+                Intent intent = new Intent();
+                intent.putExtra("journals", journal2);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
-
-
 
 
             }
@@ -95,8 +97,8 @@ public class WritingActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                setResult(Activity.RESULT_CANCELED,intent);
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_CANCELED, intent);
                 finish();
 
 

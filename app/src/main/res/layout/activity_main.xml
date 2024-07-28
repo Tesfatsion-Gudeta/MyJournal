@@ -6,31 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:backgroundTint="#000000"
+    android:backgroundTint="#FFFFFF"
     tools:context=".MainActivity">
-    
+
     <Toolbar
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#2196F3"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Journal "
-            android:textStyle="bold|italic"
-            android:textSize="30sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
 
     </Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeRecylerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/homeRecylerView"
-        android:padding="10dp"
-        android:layout_below="@id/toolbar1"/>
+        android:layout_below="@id/toolbar1"
+        android:background="#000000"
+        android:foregroundTint="#FFFFFF"
+        android:padding="10dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -38,8 +42,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:tintMode="multiply"
         app:srcCompat="@android:drawable/ic_menu_edit"
-        app:tint="#000000" />
+        app:tint="#FFFFFF" />
 </RelativeLayout>

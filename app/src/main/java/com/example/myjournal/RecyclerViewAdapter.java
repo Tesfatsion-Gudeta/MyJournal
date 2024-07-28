@@ -27,10 +27,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.listener = listener;
     }
 
-//    public RecyclerViewAdapter(Context context, List<Journal> journalList) {
-//        this.context = context;
-//        this.journalList = journalList;
-//    }
 
     @NonNull
     @Override
@@ -54,10 +50,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         colors.add(R.color.color3);
         colors.add(R.color.color4);
         colors.add(R.color.color5);
-        colors.add(R.color.color6);
-        colors.add(R.color.color7);
         colors.add(R.color.color8);
-        colors.add(R.color.color9);
+
 
 
         Random color=new Random();

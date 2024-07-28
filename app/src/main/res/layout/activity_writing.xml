@@ -5,9 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".WritingActivity"
-    android:orientation="vertical">
+    tools:context=".WritingActivity">
 
     <LinearLayout
         android:id="@+id/layout_top"
@@ -16,7 +17,6 @@
         android:layout_gravity="right"
         android:orientation="horizontal"
         android:padding="5dp">
-
 
 
         <ImageButton
@@ -39,18 +39,20 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/note_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/note_part"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/editText_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="25dp"
+            android:hint="Date: "
+            android:textSize="20sp"
+            android:fontFamily="@font/lora_semibold_italic"
+            />
 
         <EditText
             android:id="@+id/editText_title"
@@ -58,19 +60,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="Title"
-            android:inputType="text"
-            />
+            android:fontFamily="@font/lora_semibold_italic"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editText_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Write here..."
-            android:inputType="textMultiLine"
             android:layout_marginTop="12dp"
-            android:scrollHorizontally="false"
+            android:fontFamily="@font/lora_semibold_italic"
+            android:hint="Write here..."
 
-            />
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false" />
 
     </LinearLayout>
 

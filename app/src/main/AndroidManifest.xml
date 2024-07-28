@@ -17,7 +17,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Base.Theme.MyJournal"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
