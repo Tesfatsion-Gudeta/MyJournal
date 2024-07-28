@@ -87,14 +87,36 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+
             else if(resultCode==Activity.RESULT_CANCELED){
 
             }
-        }}
+
+        }
+        else if(requestCode==102){
+            if(resultCode==Activity.RESULT_OK){
+
+                Journal updatedJournal= (Journal) data.getSerializableExtra("journal");
+                journalDB.getJournalDAO().update(updatedJournal.getId(),updatedJournal.getTitle(),updatedJournal.getNote());
+                journalList.clear();
+                journalList.addAll(journalDB.getJournalDAO().getAllNotes());
+                recyclerViewAdapter.notifyDataSetChanged();
+
+
+
+            }
+
+        }
+
+    }
 
         private final JournalClickListener journalClickListener=new JournalClickListener() {
             @Override
             public void onClick(Journal journals) {
+
+                Intent intent=new Intent(MainActivity.this,WritingActivity.class);
+                intent.putExtra("savedJournal",journals);
+                startActivityForResult(intent,102);
 
             }
 

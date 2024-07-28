@@ -25,6 +25,7 @@ public class WritingActivity extends AppCompatActivity {
     private TextView textDate;
     private ImageView saveButton,cancelButton;
     private Journal journal2;
+    private boolean savedJournal=false;
 
 
     @Override
@@ -37,6 +38,18 @@ public class WritingActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        try {
+            journal2=new Journal();
+            journal2= (Journal) getIntent().getSerializableExtra("savedJournal");
+            assert journal2 != null;
+            textDate.setText(journal2.getDate());
+            textTitle.setText(journal2.getTitle());
+            textNote.setText(journal2.getNote());
+            savedJournal=true;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
         textTitle=findViewById(R.id.editText_title);
@@ -62,8 +75,8 @@ public class WritingActivity extends AppCompatActivity {
                     Toast.makeText(WritingActivity.this, "you haven't written your journal", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                journal2 = new Journal();
+                if(savedJournal){
+                journal2 = new Journal();}
                 journal2.setTitle(title2);
                 journal2.setDate(format.format(date2));
 
