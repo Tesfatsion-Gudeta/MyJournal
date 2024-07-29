@@ -6,16 +6,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.search.SearchBar;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter recyclerViewAdapter;
     ImageView addButton;
     RelativeLayout relativeLayout;
+    SearchView searchView;
 
 
     @Override
@@ -55,13 +65,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.homeRecylerView);
         relativeLayout = findViewById(R.id.main);
         addButton = findViewById(R.id.imageButton);
+        searchView = findViewById(R.id.searching);
 
         journalList = journalDB.getJournalDAO().getAllNotes();
 
         recyclerView.setHasFixedSize(true);
         recyclerViewAdapter = new RecyclerViewAdapter(this, journalList, journalClickListener);
         recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +82,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterResult(newText);
+                return true;
+            }
+        });
+
+
+
+    }
+
+    private void filterResult(String newText) {
+        List<Journal> filteredList=new ArrayList<>();
+
+        for(Journal singleItem:journalList){
+            if(singleItem.getTitle().toLowerCase().contains(newText.toLowerCase())||singleItem.getNote().toLowerCase().contains(newText.toLowerCase())){
+                filteredList.add(singleItem);
+
+
+            }
         }
+        recyclerViewAdapter.filterView(filteredList);
+
     }
 
     @Override

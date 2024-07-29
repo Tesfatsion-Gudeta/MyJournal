@@ -85,6 +85,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return journalList.size() ;
     }
 
+    public void filterView(List<Journal> filteredList){
+        journalList=filteredList;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView,cardView2;
         private TextView textDate,textTitle,title2,date2,note2;

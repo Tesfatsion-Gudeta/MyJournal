@@ -5,9 +5,10 @@
     <color name="color1">#87BAE2</color>
     <color name="color2">#E6776F</color>
     <color name="color3">#DBE485</color>
-    <color name="color4">#77CE7A</color>
+    <color name="color4">#81CA84</color>
     <color name="color5">#CC72BD</color>
-    <color name="color8">#684C43</color>
+    <color name="color8">#997468</color>
+    <color name="yellow">#FFC107</color>
 
 
 </resources>

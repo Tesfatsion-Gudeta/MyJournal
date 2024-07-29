@@ -9,30 +9,37 @@
     android:backgroundTint="#FFFFFF"
     tools:context=".MainActivity">
 
-    <Toolbar
+
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#2196F3"
-        >
+        android:background="#000000"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"
+        />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Journal "
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+    <SearchView
+        android:id="@+id/searching"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@id/toolbar1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/corners"
+        android:iconifiedByDefault="false"
+        android:queryHint="search"
+        android:focusable="false"/>
 
 
-    </Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRecylerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar1"
-        android:background="#000000"
+        android:layout_below="@id/searching"
+        android:background="#FFFFFF"
         android:foregroundTint="#FFFFFF"
         android:padding="10dp" />
 
@@ -51,5 +58,5 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:tintMode="multiply"
         app:srcCompat="@android:drawable/ic_menu_edit"
-        app:tint="#FFFFFF" />
+        app:tint="#000000" />
 </RelativeLayout>
