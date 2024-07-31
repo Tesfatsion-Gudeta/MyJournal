@@ -3,8 +3,10 @@ package com.example.myjournal;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
@@ -27,7 +29,7 @@ import com.google.android.material.search.SearchBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private final JournalClickListener journalClickListener = new JournalClickListener() {
         @Override
         public void onClick(Journal journals) {
@@ -39,8 +41,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onLongClick(Journal journals, CardView cardView) {
 
+            tobeDeleted=new Journal();
+            tobeDeleted=journals;
+            showPopup(cardView);
+
         }
     };
+
+    private void showPopup(CardView cardView) {
+        PopupMenu popupMenu=new PopupMenu(this,cardView);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.pop_up);
+        popupMenu.show();
+    }
+
     JournalDB journalDB;
     RecyclerView recyclerView;
     List<Journal> journalList;
@@ -48,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView addButton;
     RelativeLayout relativeLayout;
     SearchView searchView;
+    Journal tobeDeleted;
 
 
     @Override
@@ -149,5 +164,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+
+        if(menuItem.getItemId()==R.id.delete){
+            journalDB.getJournalDAO().delete(tobeDeleted);
+            journalList.remove(tobeDeleted);
+            recyclerViewAdapter.notifyDataSetChanged();
+
+        }
+        return false;
     }
 }
