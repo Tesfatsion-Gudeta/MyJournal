@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("androidx.security:security-crypto:1.1.0-alpha03")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
