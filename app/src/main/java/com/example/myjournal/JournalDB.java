@@ -6,11 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Journal.class},version = 1,exportSchema = false)
+@Database(entities = {Journal.class, Passcode.class},version = 1,exportSchema = false)
 public abstract class JournalDB extends RoomDatabase {
 
     private static JournalDB journalDB;
     private static String databaseName="MyJournal";
+//    private static String passcodeTable
 
     public synchronized static JournalDB getJournalDB(Context context){
 

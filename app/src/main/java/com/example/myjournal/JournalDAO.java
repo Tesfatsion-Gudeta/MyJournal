@@ -23,4 +23,6 @@ public interface JournalDAO {
     @Delete
     void delete(Journal journal);
 
+    @Query("select passcode_number FROM passcode")
+    String getPasscode();
 }
