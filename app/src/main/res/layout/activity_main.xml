@@ -24,13 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_below="@id/toolbar1"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/corners"
+        android:backgroundTint="#CCCBCB"
+        android:focusable="false"
         android:iconifiedByDefault="false"
-        android:queryHint="search"
-        android:focusable="false"/>
+        android:queryHint="search" />
 
 
 
@@ -56,6 +57,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:backgroundTint="#393E57"
         android:tintMode="multiply"
         app:srcCompat="@android:drawable/ic_menu_edit"
         app:tint="#000000" />

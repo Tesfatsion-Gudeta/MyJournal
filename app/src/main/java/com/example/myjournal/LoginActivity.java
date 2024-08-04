@@ -3,6 +3,8 @@ package com.example.myjournal;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import java.security.GeneralSecurityException;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText password;
+    private Button enterButton;
 
     private static JournalDB journalDB;
 
@@ -35,25 +38,40 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         password=findViewById(R.id.editTextNumberPassword);
-        String passwordNumber=password.getText().toString();
+        enterButton=findViewById(R.id.enterbutton);
 
 
-        try {
-            SharedPreferences encryptedPrefs = getEncryptedSharedPreferences();
-            String storedPasscode = encryptedPrefs.getString("passcode", "1234");
 
-            if (passwordNumber.equals(storedPasscode)) {
-                Intent intent=new Intent(LoginActivity.this,SplashScreen.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(LoginActivity.this, "Incorrect passcode", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+        enterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String passwordNumber=password.getText().toString();
+
+                try {
+                    SharedPreferences encryptedPrefs = getEncryptedSharedPreferences();
+                    String storedPasscode = encryptedPrefs.getString("passcode", "1234");
+
+
+                    if (passwordNumber.equals(storedPasscode)) {
+                        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Incorrect passcode", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (GeneralSecurityException | IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(LoginActivity.this, "Error accessing encrypted preferences", Toast.LENGTH_SHORT).show();
+                }
+
             }
-        } catch (GeneralSecurityException | IOException e) {
-            e.printStackTrace();
-            Toast.makeText(LoginActivity.this, "Error accessing encrypted preferences", Toast.LENGTH_SHORT).show();
-        }
-
+        });
 
 
 
