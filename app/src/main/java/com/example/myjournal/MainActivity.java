@@ -1,14 +1,18 @@
 package com.example.myjournal;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -59,10 +63,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     RecyclerView recyclerView;
     List<Journal> journalList;
     RecyclerViewAdapter recyclerViewAdapter;
-    ImageView addButton;
+    ImageView addButton,settingsButton;
     RelativeLayout relativeLayout;
     SearchView searchView;
     Journal tobeDeleted;
+    Toolbar toolbar;
+
 
 
     @Override
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         relativeLayout = findViewById(R.id.main);
         addButton = findViewById(R.id.imageButton);
         searchView = findViewById(R.id.searching);
+//        settingsButton=findViewById(R.id.settingsbutton);
 
         journalList = journalDB.getJournalDAO().getAllNotes();
 
@@ -108,6 +115,47 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             public boolean onQueryTextChange(String newText) {
                 filterResult(newText);
                 return true;
+            }
+        });
+
+
+        //functionality for the settings button
+
+//        settingsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+
+
+//
+//        try {
+//            PopupMenu popupMenu1=new PopupMenu(this,toolbar);
+//            popupMenu1.setOnMenuItemClickListener(this);
+//            popupMenu1.inflate(R.menu.change_passcode);
+//            popupMenu1.show();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+
+
+        // Handle toolbar menu clicks
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.changepasscodebutton) {
+
+
+
+                    Toast.makeText(MainActivity.this, "Settings clicked", Toast.LENGTH_SHORT).show();
+
+                    return true;
+                }
+                return false;
             }
         });
 

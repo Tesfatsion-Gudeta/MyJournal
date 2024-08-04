@@ -14,10 +14,25 @@
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#000000"
+        android:background="@color/black"
         app:title="@string/app_name"
         app:titleTextColor="@color/white"
+        app:menu="@menu/change_passcode"
         />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/settingsbutton"-->
+<!--        android:layout_width="74dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        app:srcCompat="@drawable/baseline_settings_24" />-->
 
     <SearchView
         android:id="@+id/searching"
@@ -61,4 +76,5 @@
         android:tintMode="multiply"
         app:srcCompat="@android:drawable/ic_menu_edit"
         app:tint="#000000" />
+
 </RelativeLayout>
