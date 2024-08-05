@@ -15,6 +15,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         relativeLayout = findViewById(R.id.main);
         addButton = findViewById(R.id.imageButton);
         searchView = findViewById(R.id.searching);
-//        settingsButton=findViewById(R.id.settingsbutton);
 
         journalList = journalDB.getJournalDAO().getAllNotes();
 
@@ -118,49 +118,32 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             }
         });
 
-
-        //functionality for the settings button
-
-//        settingsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
 
-//
-//        try {
-//            PopupMenu popupMenu1=new PopupMenu(this,toolbar);
-//            popupMenu1.setOnMenuItemClickListener(this);
-//            popupMenu1.inflate(R.menu.change_passcode);
-//            popupMenu1.show();
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-
-
-        // Handle toolbar menu clicks
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.changepasscodebutton) {
 
 
 
-                    Toast.makeText(MainActivity.this, "Settings clicked", Toast.LENGTH_SHORT).show();
+    }
 
-                    return true;
-                }
-                return false;
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.change_passcode,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.changepasscodebutton){
+            Intent intent=new Intent(this,SettingActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
 
-
+        return true;
     }
 
     private void filterResult(String newText) {

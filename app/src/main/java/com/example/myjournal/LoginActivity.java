@@ -41,8 +41,20 @@ public class LoginActivity extends AppCompatActivity {
         enterButton=findViewById(R.id.enterbutton);
 
 
+        try {
+            SharedPreferences encryptedPrefs = getEncryptedSharedPreferences();
+            String storedPasscode = encryptedPrefs.getString("passcode", "");
 
 
+            if (storedPasscode.equals("")) {
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+            Toast.makeText(LoginActivity.this, "Error accessing encrypted preferences", Toast.LENGTH_SHORT).show();
+        }
 
 
 
@@ -55,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
                     SharedPreferences encryptedPrefs = getEncryptedSharedPreferences();
-                    String storedPasscode = encryptedPrefs.getString("passcode", "1234");
+                    String storedPasscode = encryptedPrefs.getString("passcode", "");
 
 
                     if (passwordNumber.equals(storedPasscode)) {
