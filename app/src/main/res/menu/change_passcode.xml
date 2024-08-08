@@ -4,9 +4,6 @@
 
         <item android:id="@+id/changepasscodebutton"
             android:title="set/change passcode"
-            android:icon="@drawable/baseline_settings_24"
-            app:showAsAction="ifRoom"
             />
-
 
 </menu>
