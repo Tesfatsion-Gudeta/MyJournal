@@ -2,6 +2,7 @@
 
 **My Journal** is an Android application designed to help you keep track of your thoughts and daily activities. It features a user-friendly interface, secure password protection, and uses Room database for reliable data storage.
 
+
 ## Features
 
 - **Password Protection**: The app ensures that only authorized users can access their journals.
@@ -9,6 +10,15 @@
 - **Create,Edit and Delete Entries**: create new journal entries, edit existing ones and Remove journal entries that are no longer needed.
 - **Search Functionality**: Quickly find specific journal entries by searching for titles or keywords within the journal content.
 - **User-Friendly Interface**: The app features a clean and straightforward design, making it easy to write, manage, and navigate your journal entries.
+
+
+  ## Technologies Used
+
+- **Java Programming Language**: The app is developed using Java, widely-used programming language for Android development.
+
+- **Room Database**: Utilized for local data storage.
+  
+- **Encrypted SharedPreferences**: Used to securely store and manage the passcode for password protection.
 
 
 
