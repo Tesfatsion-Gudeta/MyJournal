@@ -11,7 +11,7 @@
 ## preview
 
 Here are some screenshots of the app in action:
-![splash screen](./images/splashscreen.jpg)
+![splash screen](./screenshots/splashscreen.jpg)
 ![Password Prompt](./images/password.jpg)
 ![Home Screen](./images/homescreen.jpg)
 ![Writing Page](./images/writingpage.jpg)
