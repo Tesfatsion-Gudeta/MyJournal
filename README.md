@@ -4,9 +4,14 @@
 
 ## Features
 
-- **Password Protection**: Your journal entries are secured with password protection. 
-- **Room Database**: All journal entries are stored in a local Room database, ensuring data persistence and easy retrieval.
-- **Intuitive UI**: The app provides a simple and clean interface for creating, viewing, and managing your journal entries.
+- **Password Protection**: The app ensures that only authorized users can access their journals.
+- **Room Database**: Journal entries are stored in a local Room database, which guarantees data persistence, reliable storage, and easy retrieval.
+- **Create and Edit Entries**: create new journal entries and edit existing ones.
+- **Delete Entries**: Remove journal entries.
+- **Search Functionality**: Quickly find specific journal entries by searching for titles or keywords within the journal content.
+- **User-Friendly Interface**: The app features a clean and straightforward design, making it easy to write, manage, and navigate your journal entries.
+
+
 
 ## App Preview
 
