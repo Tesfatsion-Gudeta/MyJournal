@@ -12,14 +12,14 @@
 
 Here are some screenshots of the app in action:
 ![splash screen](./screenshots/splashscreen.jpg)
-![Password Prompt](./images/password.jpg)
-![Home Screen](./images/homescreen.jpg)
-![Writing Page](./images/writingpage.jpg)
-![writing](./images/writing.jpg)
-![journals list](./images/journals.jpg)
-![Settings/Change Password](./images/settingpassword.jpg)
-![Settings/Change Password](./images/settingpassword2.jpg)
-![searching journal](./images/search.jpg)
+![Password Prompt](./screenshots/password.jpg)
+![Home Screen](./screenshots/homescreen.jpg)
+![Writing Page](./screenshots/writingpage.jpg)
+![writing](./screenshots/writing.jpg)
+![journals list](./screenshots/journals.jpg)
+![Settings/Change Password](./screenshots/settingpassword.jpg)
+![Settings/Change Password](./screenshots/settingpassword2.jpg)
+![searching journal](./screenshots/search.jpg)
 
 
 
