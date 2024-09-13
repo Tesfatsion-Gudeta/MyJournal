@@ -11,10 +11,15 @@
 ## preview
 
 Here are some screenshots of the app in action:
+![splash screen](./images/splashscreen.jpg)
+![Password Prompt](./images/password.jpg)
+![Home Screen](./images/homescreen.jpg)
+![Writing Page](./images/writingpage.jpg)
+![writing](./images/writing.jpg)
+![journals list](./images/journals.jpg)
+![Settings/Change Password](./images/settingpassword.jpg)
+![Settings/Change Password](./images/settingpassword2.jpg)
+![searching journal](./images/search.jpg)
 
-![Home Screen](./images/home_screen.png)
-![Writing Page](./images/writing_page.png)
-![Settings/Change Password](./images/settings_change_password.png)
-![Password Prompt](./images/password_prompt.png)
 
 
