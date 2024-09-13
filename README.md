@@ -23,7 +23,7 @@ Here are some screenshots of the app in action:
 ### Home Screen
 ![Home Screen](./screenshots/homescreen.jpg)
 
-### Writing Screen
+### Writing Page
 ![Writing Page](./screenshots/writingpage.jpg)
 ![writing](./screenshots/writing.jpg)
 
